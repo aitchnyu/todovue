@@ -1,4 +1,4 @@
-# Test
+# Todo App
 
 ```shell
 cd todo
@@ -29,4 +29,11 @@ npm run test:unit
 npm run lint
 ```
 
+## todo
+edit component
+unit and e2e tests
+localstorage and fallback
+Save/load to json file
+undo
+clear n done items
 
