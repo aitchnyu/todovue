@@ -5,7 +5,7 @@ This allows you to:
  - Filter by complete
  - persist todos across refreshes by local storage
 
-This used:
+This uses:
 - Vue 2, with Jest tests
 - Buefy, Bulma UI components
 - Local Storage
@@ -36,3 +36,8 @@ Lints and fixes files
 ```shell
 $ npm run lint
 ```
+
+## Extras I could have done
+- 100% test coverage
+- Undo action for edit and delete operations
+- Import/export to json
