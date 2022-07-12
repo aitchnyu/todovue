@@ -30,10 +30,11 @@ npm run lint
 ```
 
 ## todo
-edit component
 unit and e2e tests
 localstorage and fallback
 Save/load to json file
 undo
 clear n done items
+overlay and editing
+
 

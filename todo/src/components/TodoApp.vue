@@ -18,32 +18,21 @@
           Show {{ completedTodosCount }} completed todos
         </b-switch>
       </b-field>
-      <div v-for="todo of todosToDisplay" :key="todo.id">
-        <b-field>
-          <b-checkbox
-            :value="todo.isCompleted"
-            @input="completeTodo(todo.id, !todo.isCompleted)"
-          >
-            <span
-              :style="{
-                'text-decoration': todo.isCompleted ? 'line-through' : null,
-              }"
-              >{{ todo.title }}</span
-            >
-            <b-button
-              @click="deleteTodo(todo.id)"
-              type="is-danger"
-              size="is-small"
-              label="Delete"
-            />
-          </b-checkbox>
-        </b-field>
-      </div>
+      <todo-item
+        v-for="todo of todosToDisplay"
+        :key="todo.id"
+        :todo="todo"
+        @save="(newTitle) => editTodo(todo.id, newTitle)"
+        @complete="completeTodo(todo.id, !todo.isCompleted)"
+        @delete="deleteTodo(todo.id)"
+      ></todo-item>
     </div>
   </section>
 </template>
 
 <script>
+import TodoItem from "./TodoItem";
+
 class Todo {
   title = "";
   isCompleted = false;
@@ -64,6 +53,7 @@ function escapeXss(untrustedString) {
 
 export default {
   name: "TodoApp",
+  components: { TodoItem },
   methods: {
     addTodo() {
       // Don't allow blank lines
@@ -72,6 +62,10 @@ export default {
       }
       this.todos.push(new Todo(this.newTodoText));
       this.newTodoText = "";
+    },
+    editTodo(id, newTitle) {
+      const todo = this.todos.find((todo) => todo.id === id);
+      todo.title = newTitle;
     },
     completeTodo(id, value) {
       const todo = this.todos.find((todo) => todo.id === id);
