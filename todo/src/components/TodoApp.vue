@@ -55,6 +55,13 @@ export default {
   name: "TodoApp",
   components: { TodoItem },
   methods: {
+    saveTodos() {
+      window.localStorage.setItem("todos", JSON.stringify(this.todos));
+    },
+    loadSavedTodos() {
+      const maybeTodos = window.localStorage.getItem("todos");
+      return maybeTodos ? JSON.parse(maybeTodos) : [];
+    },
     addTodo() {
       // Don't allow blank lines
       if (this.newTodoText === "") {
@@ -62,19 +69,23 @@ export default {
       }
       this.todos.push(new Todo(this.newTodoText));
       this.newTodoText = "";
+      this.saveTodos();
     },
     editTodo(id, newTitle) {
       const todo = this.todos.find((todo) => todo.id === id);
       todo.title = newTitle;
+      this.saveTodos();
     },
     completeTodo(id, value) {
       const todo = this.todos.find((todo) => todo.id === id);
       todo.isCompleted = value;
+      this.saveTodos();
     },
     deleteTodo(id) {
       const index = this.todos.findIndex((todo) => todo.id === id);
       const title = this.todos[index].title;
       this.todos.splice(index, 1);
+      this.saveTodos();
       this.$buefy.snackbar.open({
         message: `Deleted <em>${escapeXss(title)}</em>`,
       });
@@ -83,7 +94,7 @@ export default {
   data() {
     return {
       newTodoText: "",
-      todos: [],
+      todos: this.loadSavedTodos(),
       shouldShowCompletedTodos: true,
     };
   },
