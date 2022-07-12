@@ -30,20 +30,26 @@
       >
       </b-input>
       <p class="control">
-        <b-button @click="saveEdit()" type="is-primary" label="Save" />
+        <b-button @click="saveEdit()" class="save-button" type="is-primary"
+          >Save</b-button
+        >
       </p>
       <p class="control">
-        <b-button @click="cancelEdit()" type="is-primary" label="Cancel" />
+        <b-button @click="cancelEdit()" class="cancel-button" type="is-primary"
+          >Cancel</b-button
+        >
       </p>
     </b-field>
   </div>
 </template>
 
 <script>
+import { Todo } from "./utils";
+
 export default {
   name: "TodoItem",
   props: {
-    todo: { type: Object, required: true },
+    todo: { type: Todo, required: true },
   },
   data() {
     return {

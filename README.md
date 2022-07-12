@@ -1,40 +1,38 @@
 # Todo App
 
+This allows you to:
+ - Add, edit, mark as complete and remove todos
+ - Filter by complete
+ - persist todos across refreshes by local storage
+
+This used:
+- Vue 2, with Jest tests
+- Buefy, Bulma UI components
+- Local Storage
+
+## Setting up environment
+
 ```shell
-cd todo
+$ cd todo
+$ npm install
 ```
 
-## Project setup
+Compiles and hot-reloads for development
 ```shell
-npm install
+$ npm run serve
 ```
 
-### Compiles and hot-reloads for development
+Compiles and minifies for production
 ```shell
-npm run serve
+$ npm run build
 ```
 
-### Compiles and minifies for production
+Run your unit tests
 ```shell
-npm run build
+$ npm run test:unit
 ```
 
-### Run your unit tests
+Lints and fixes files
 ```shell
-npm run test:unit
+$ npm run lint
 ```
-
-### Lints and fixes files
-```shell
-npm run lint
-```
-
-## todo
-unit and e2e tests
-localstorage and fallback
-Save/load to json file
-undo
-clear n done items
-overlay and editing
-
-
